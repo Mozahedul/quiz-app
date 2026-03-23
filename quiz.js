@@ -1,36 +1,19 @@
-const quizData = [
-  {
-    question: "What does DOM stand for in JavaScript?",
-    options: [
-      "Document Object Model",
-      "Data Object Model",
-      "Display Object Model",
-      "Digital Object Model",
-    ],
-    correct: 0,
-    duration: 25,
-  },
-  {
-    question:
-      "Which method is used to add an element to the end of an array in JavaScript?",
-    options: ["pop()", "shift()", "push()", "unshift()"],
-    correct: 2,
-    duration: 25,
-  },
-  {
-    question:
-      "What is the output of the following code: console.log(typeof NaN);",
-    options: ["number", "string", "undefined", "object"],
-    correct: 3,
-    duration: 65,
-  },
-  {
-    question: "Which of the following is NOT a JavaScript data type?",
-    options: ["String", "Character", "Number", "Boolean"],
-    correct: 1,
-    duration: 72,
-  },
-];
+const fetchQuizData = async () => {
+  try {
+    const url =
+      "https://gist.githubusercontent.com/Mozahedul/a741404beafa87f1d8b21c8121a50ae2/raw/quiz.json";
+    const response = await fetch(`${url}?cachebust=${Date.now()}`, {
+      cache: "no-cache",
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching quiz data:", error);
+  }
+};
+
+const quizData = await fetchQuizData();
+console.log("fetch data => ", quizData);
 
 const questions = [...quizData].sort(() => Math.random() - 0.5);
 let currentQuestion = 0;
@@ -161,13 +144,18 @@ function showResult() {
     localStorage.setItem("quizHighScore", score);
   }
 
+  // Quiz completion page layout
   resultEl.innerHTML = `
     <h2 id="hurray">👏 Hurray!!! You completed the quiz!</h2>
-    <p id="score">Your Score: ${score} out of ${questions.length}</p>
-    <p id="highest-score">Highest Score: ${Math.max(score, highScore)}</p>
-    ${isNew ? "<p>Congratulations! You set a new high score!</p>" : ""}
-    <button id="retake-quiz" onclick="resetQuiz()">Retake Quiz</button>
+    <p id="score"><strong>Your Score:</strong> ${score} out of ${questions.length}</p>
+    <p id="highest-score"><strong>Highest Score:</strong> ${Math.max(score, highScore)}</p>
+    ${isNew ? "<p><strong>Congratulations!</strong> You set a new high score!</p>" : ""}
+    <button id="retake-quiz">Retake Quiz</button>
   `;
+
+  // After quiz completion, retake button will be pressed
+  const retakeQuizBtn = document.getElementById("retake-quiz");
+  retakeQuizBtn?.addEventListener("click", () => resetQuiz());
 }
 
 function resetQuiz() {
