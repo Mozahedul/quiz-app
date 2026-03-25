@@ -1,0 +1,3213 @@
+[
+  {
+    "id": 1,
+    "question": "What type of database is MongoDB, and what is the main advantage of its document model for modern applications?",
+    "options": [
+      "A relational database that enforces fixed schemas like SQL tables",
+      "A document-oriented NoSQL database whose flexible JSON-like documents map naturally to application objects",
+      "A time-series database optimized only for metrics",
+      "A key–value store that can persist only primitive types"
+    ],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 2,
+    "question": "What is BSON in MongoDB and why is it preferred over plain JSON for storage and network transfer?",
+    "options": [
+      "A text-only format that compresses JSON strings aggressively",
+      "A binary serialization format that extends JSON with additional types like Date, ObjectId, and allows more efficient encoding",
+      "A CSV-based interchange format for tabular data",
+      "An in-memory structure used only by the MongoDB shell"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 3,
+    "question": "What is the role of the _id field in a MongoDB document?",
+    "options": [
+      "An optional label used only in the UI",
+      "A field that stores the collection name",
+      "A required, unique identifier for each document within a collection that acts as the primary key",
+      "A field that must always be a string"
+    ],
+    "correct": 2,
+    "duration": 25
+  },
+  {
+    "id": 4,
+    "question": "Which statement describes the structure of a MongoDB replica set?",
+    "options": [
+      "A set of mongos routers sharing configuration",
+      "A group of mongod instances that store identical data, with one primary accepting writes and secondaries replicating from it",
+      "A set of config servers used only for metadata",
+      "A client-side connection pool across multiple applications"
+    ],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 5,
+    "question": "What is the main responsibility of a MongoDB arbiter in a replica set?",
+    "options": [
+      "To store compressed copies of data",
+      "To receive all read operations",
+      "To participate in elections to break ties without storing data",
+      "To handle sharding metadata"
+    ],
+    "correct": 2,
+    "duration": 30
+  },
+  {
+    "id": 6,
+    "question": "Why is it usually recommended to have an odd number of voting members in a MongoDB replica set?",
+    "options": [
+      "To simplify backup scheduling",
+      "To avoid split-brain by reducing election ties and ensuring clear majorities",
+      "Because secondaries can only be added in odd numbers",
+      "To enable sharding on the same nodes"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 7,
+    "question": "What is the primary purpose of sharding in MongoDB?",
+    "options": [
+      "To create read-only replicas",
+      "To vertically scale a single node",
+      "To horizontally partition data across multiple servers for scalability and high throughput",
+      "To compress indexes"
+    ],
+    "correct": 2,
+    "duration": 30
+  },
+  {
+    "id": 8,
+    "question": "What is a shard key in MongoDB sharding?",
+    "options": [
+      "A per-node encryption key",
+      "A document field or compound of fields used to decide on which shard a document resides",
+      "The internal _id index",
+      "A key only used for authentication"
+    ],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 9,
+    "question": "Which characteristics define a good shard key choice for a high-write MongoDB workload?",
+    "options": [
+      "Low cardinality and monotonically increasing values",
+      "High cardinality, good randomness or distribution, and alignment with common query patterns",
+      "Only text fields indexed with text indexes",
+      "Any field that is never used in queries"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 10,
+    "question": "What is the role of config servers in a MongoDB sharded cluster?",
+    "options": [
+      "To store backups for all shards",
+      "To host client applications",
+      "To store cluster metadata, including chunk location and sharding configuration",
+      "To handle user authentication only"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 11,
+    "question": "What is the function of mongos in a MongoDB sharded architecture?",
+    "options": [
+      "To act as a query router that directs operations to the correct shards based on the shard key",
+      "To persist data on disk like mongod",
+      "To monitor metrics for all nodes",
+      "To serve as the only primary in the cluster"
+    ],
+    "correct": 0,
+    "duration": 30
+  },
+  {
+    "id": 12,
+    "question": "What is the main goal of the balancer process in a sharded MongoDB cluster?",
+    "options": [
+      "To compact data files",
+      "To automatically redistribute chunks across shards to keep data and load balanced",
+      "To manage connection pools",
+      "To trigger elections"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 13,
+    "question": "How does MongoDB achieve high availability in a replica set during a primary node failure?",
+    "options": [
+      "By automatically promoting an arbiter",
+      "By clients automatically writing to secondaries",
+      "By secondaries holding an election and promoting a new primary when a majority is available",
+      "By pausing all writes until manual intervention"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 14,
+    "question": "Which write concern configuration ensures that a write is acknowledged only after it has been committed to the majority of members' journals?",
+    "options": [
+      "{ w: 1 }",
+      "{ w: 'majority' } with journaling disabled",
+      "{ w: 'majority', j: true }",
+      "{ w: 0 }"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 15,
+    "question": "Which read concern level guarantees that a read operation returns data that has been acknowledged by a majority of replica set members?",
+    "options": ["local", "available", "linearizable", "majority"],
+    "correct": 3,
+    "duration": 40
+  },
+  {
+    "id": 16,
+    "question": "What type of isolation do MongoDB multi-document transactions provide?",
+    "options": [
+      "Read uncommitted",
+      "Read committed",
+      "Snapshot isolation semantics at the replica-set or shard level",
+      "Serializable across the entire cluster"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 17,
+    "question": "Why are long-running multi-document transactions discouraged in MongoDB production deployments?",
+    "options": [
+      "They are not replicated to secondaries",
+      "They bypass indexes completely",
+      "They retain in-memory snapshots and locks longer, increase resource consumption, and can block oplog truncation and normal operations",
+      "They disable journaling"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 18,
+    "question": "Which driver-side construct is required to start a transaction from an application?",
+    "options": [
+      "Opening a mongos shell session",
+      "Using a client session object and calling startTransaction on it",
+      "Enabling transactions in the connection string only",
+      "Creating a capped collection"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 19,
+    "question": "Which aggregation stage is generally recommended to appear as early as possible in the pipeline for performance optimization?",
+    "options": ["$group", "$match", "$sort", "$project"],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 20,
+    "question": "What is the purpose of the $project stage in an aggregation pipeline?",
+    "options": [
+      "To filter documents based on conditions",
+      "To join data from another collection",
+      "To reshape documents by including, excluding, or computing fields",
+      "To write results into a new collection"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 21,
+    "question": "Which aggregation stage allows you to perform a left outer join from one collection to another?",
+    "options": ["$lookup", "$unwind", "$facet", "$bucket"],
+    "correct": 0,
+    "duration": 35
+  },
+  {
+    "id": 22,
+    "question": "How would you model a recursive hierarchy (e.g., organization chart) and query descendants using the aggregation framework?",
+    "options": [
+      "Using $unwind on all collections",
+      "Using $graphLookup to traverse parent–child relationships recursively",
+      "Using $sample to fetch documents randomly",
+      "Using $out to replace the collection"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 23,
+    "question": "Which aggregation stage lets you run multiple sub-pipelines in parallel and return all their results in a single document?",
+    "options": ["$facet", "$merge", "$bucketAuto", "$count"],
+    "correct": 0,
+    "duration": 40
+  },
+  {
+    "id": 24,
+    "question": "What is the difference between $bucket and $bucketAuto in the aggregation framework?",
+    "options": [
+      "$bucket automatically finds bucket boundaries; $bucketAuto requires explicit boundaries",
+      "$bucket requires explicit boundaries; $bucketAuto computes boundaries automatically based on the requested number of buckets",
+      "They are aliases",
+      "$bucketAuto only works with text fields"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 25,
+    "question": "What is a covered query in MongoDB and why is it beneficial?",
+    "options": [
+      "A query that uses both primary and secondary indexes simultaneously",
+      "A query that uses a text index only",
+      "A query where all required fields are present in the index, so MongoDB can answer it without reading the underlying documents",
+      "A query that runs only inside transactions"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 26,
+    "question": "Which index type is used to support efficient geospatial queries on Earth-like coordinates?",
+    "options": ["2d", "2dsphere", "hashed", "text"],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 27,
+    "question": "What is a partial index in MongoDB and when might you use it?",
+    "options": [
+      "An index that is built only on embedded documents",
+      "An index that is created with a filter expression so only matching documents are included, used to reduce index size and focus on active data",
+      "An index that is not persisted to disk",
+      "An index that can be used only by change streams"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 28,
+    "question": "What is a TTL index and what problem does it solve?",
+    "options": [
+      "An index that improves join performance",
+      "An index that enforces unique constraints",
+      "An index that automatically deletes documents after a certain time, useful for expiring sessions or logs",
+      "An index only for time-series collections"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 29,
+    "question": "Which index type should be used when you want to shard a collection based on equality distribution using a hashed shard key?",
+    "options": [
+      "Wildcard index",
+      "Hashed index",
+      "Text index",
+      "2dsphere index"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 30,
+    "question": "What is a wildcard index in MongoDB and why is it useful for semi-structured data?",
+    "options": [
+      "An index on every field in every document in all databases",
+      "An index that applies to all fields in a document subtree, allowing queries over arbitrary keys without explicitly indexing each",
+      "An index only for text",
+      "An index that disables sorting"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 31,
+    "question": "How can you inspect the execution plan of a query in MongoDB to understand index usage?",
+    "options": [
+      "Use db.currentOp()",
+      "Use profiler only",
+      "Call explain() on the query (e.g., find().explain('executionStats'))",
+      "Check the oplog"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 32,
+    "question": "In explain output, what does an execution stage of COLLSCAN indicate?",
+    "options": [
+      "The query used an index scan",
+      "The query scanned the entire collection without using an index",
+      "The query was blocked by a lock",
+      "The query ran as part of an aggregation pipeline only"
+    ],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 33,
+    "question": "Which aggregation stage can you use to write the results of a pipeline back into a collection, possibly upserting or replacing documents?",
+    "options": ["$out", "$merge", "$project", "$set"],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 34,
+    "question": "What is the main difference between $out and $merge in aggregation pipelines?",
+    "options": [
+      "$out only logs output; $merge writes to disk",
+      "$out replaces an entire collection; $merge can upsert/merge documents into an existing collection based on a key",
+      "$merge only supports views",
+      "There is no difference"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 35,
+    "question": "Which MongoDB feature lets you subscribe to real-time changes (inserts, updates, deletes) on a collection or database?",
+    "options": [
+      "Tailable cursors on normal collections",
+      "Change streams",
+      "TTL indexes",
+      "Profiling"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 36,
+    "question": "What deployment requirement must be met to use change streams?",
+    "options": [
+      "A standalone mongod",
+      "A replica set or sharded cluster deployment",
+      "Time-series collections only",
+      "Config servers only"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 37,
+    "question": "What is a resume token in the context of MongoDB change streams?",
+    "options": [
+      "A token used to resume a failed aggregation pipeline from an earlier stage",
+      "A token that encodes user authentication state",
+      "A token embedded in each change event that allows clients to resume the stream from a specific point in the oplog",
+      "A token used only for sharding migrations"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 38,
+    "question": "What is a capped collection in MongoDB and when is it appropriate to use one?",
+    "options": [
+      "A collection that cannot be indexed",
+      "A fixed-size collection that preserves insertion order and automatically overwrites oldest documents, suited for logs and high-throughput append workloads",
+      "A collection that stores only configuration",
+      "A collection that stores GridFS chunks"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 39,
+    "question": "What are time-series collections in MongoDB designed for?",
+    "options": [
+      "Only full-text search",
+      "Versioning schemas",
+      "Efficient storage and querying of measurements that are primarily indexed by time, such as metrics and IoT data",
+      "Managing user sessions"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 40,
+    "question": "What is a view in MongoDB?",
+    "options": [
+      "A copy of a collection",
+      "A writeable table",
+      "A read-only, computed collection defined by an aggregation pipeline over an underlying collection",
+      "A snapshot backup"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 41,
+    "question": "Which feature allows server-side schema enforcement in a MongoDB collection?",
+    "options": [
+      "Text indexes",
+      "Validation rules using JSON Schema expressions on collections",
+      "Only client-side drivers",
+      "Replica set configuration"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 42,
+    "question": "What happens by default if an insert or update violates schema validation rules in MongoDB?",
+    "options": [
+      "The operation succeeds and logs a warning",
+      "The operation fails with a validation error and the document is not written",
+      "The document is stored in a separate quarantine collection",
+      "The field is silently dropped"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 43,
+    "question": "What is GridFS and when should it be used?",
+    "options": [
+      "A query language",
+      "A mechanism for storing and retrieving large files by splitting them into chunks across multiple documents",
+      "A backup system",
+      "An index type"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 44,
+    "question": "What is the current BSON document size limit for a single MongoDB document?",
+    "options": ["1 MB", "8 MB", "16 MB", "128 MB"],
+    "correct": 2,
+    "duration": 25
+  },
+  {
+    "id": 45,
+    "question": "Which statement describes a good use of embedding in MongoDB schema design?",
+    "options": [
+      "Embedding unbounded child collections with millions of items",
+      "Embedding small, tightly coupled data that is almost always accessed together with the parent",
+      "Embedding data that must be updated independently at high frequency",
+      "Embedding for all 1:N relationships"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 46,
+    "question": "For an unbounded one-to-many relationship (e.g., user with potentially millions of events), which modeling approach is generally recommended?",
+    "options": [
+      "Embed all events directly in the user document",
+      "Use references from the user document to event documents in a separate collection",
+      "Store events in a single global array field",
+      "Store events in multiple databases"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 47,
+    "question": "Which MongoDB feature provides authentication, ensuring that only known users or applications can connect?",
+    "options": [
+      "Authorization",
+      "Authentication with users and credentials",
+      "Sharding",
+      "Text indexes"
+    ],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 48,
+    "question": "What is role-based access control (RBAC) in MongoDB?",
+    "options": [
+      "A mechanism where permissions are assigned directly to IP addresses",
+      "A mechanism where permissions are assigned to roles and users are granted roles",
+      "A feature that disables authentication",
+      "A feature that controls only index creation"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 49,
+    "question": "Which transport security mechanism does MongoDB support to protect data-in-transit?",
+    "options": [
+      "Plain TCP only",
+      "TLS/SSL encryption between clients and servers",
+      "SSH only",
+      "IP over HTTP"
+    ],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 50,
+    "question": "What is the purpose of encryption at rest in MongoDB?",
+    "options": [
+      "To compress data files",
+      "To encrypt replication traffic",
+      "To protect data files on disk so that if the storage media is compromised, data remains unreadable without keys",
+      "To enforce schema validation"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 51,
+    "question": "What is client-side field level encryption (CSFLE) in MongoDB?",
+    "options": [
+      "Server-side transparent encryption of all data",
+      "A feature that lets clients encrypt specific fields before sending to the server so the server never sees plaintext",
+      "An index type",
+      "A compression algorithm"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 52,
+    "question": "Which index type supports language-aware search capabilities (e.g., stemming, stop words) on text content?",
+    "options": [
+      "Hashed index",
+      "Wildcard index",
+      "Text index",
+      "2dsphere index"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 53,
+    "question": "Which limitation applies to text indexes in MongoDB?",
+    "options": [
+      "Multiple text indexes per collection are allowed",
+      "Only one text index is permitted per collection",
+      "They cannot be combined in compound indexes",
+      "They cannot be used with the $text operator"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 54,
+    "question": "Which operator is used in a query to perform full-text search using a text index?",
+    "options": ["$search", "$text", "$regex", "$contains"],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 55,
+    "question": "What is collation in MongoDB?",
+    "options": [
+      "A sharding strategy",
+      "A mechanism to define language-specific rules for string comparison, sorting, and case/diacritic sensitivity",
+      "A backup technology",
+      "A profiling mode"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 56,
+    "question": "What is the MongoDB profiler used for?",
+    "options": [
+      "Schema migration",
+      "Collecting and logging query performance information, including slow operations, for analysis",
+      "Index defragmentation",
+      "Sharding configuration"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 57,
+    "question": "Which metrics are most important when monitoring a production MongoDB deployment?",
+    "options": [
+      "Number of collections only",
+      "CPU, memory, disk I/O, connections, operation throughput, replication lag, and slow queries",
+      "Shell history size",
+      "Number of indexes per collection only"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 58,
+    "question": "What is the recommended way to implement point-in-time recovery for MongoDB?",
+    "options": [
+      "Periodic mongodump only",
+      "File copy while MongoDB is offline",
+      "Continuous backup solutions that capture oplog changes in addition to snapshots",
+      "Exporting JSON after every write"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 59,
+    "question": "What is the impact of having many secondary indexes on a heavily write-intensive collection?",
+    "options": [
+      "Writes become faster",
+      "Writes are unaffected by indexes",
+      "Each write must update all relevant indexes, slowing down insert and update operations",
+      "Reads become impossible"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 60,
+    "question": "Which read preference is suitable for analytics queries that can tolerate slightly stale data?",
+    "options": ["primary", "secondary", "nearest", "primaryPreferred only"],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 61,
+    "question": "What is the difference between readPreference 'secondary' and 'secondaryPreferred'?",
+    "options": [
+      "'secondaryPreferred' forces reads to secondaries always",
+      "'secondary' prefers primary",
+      "'secondary' reads only from secondaries and errors if none are available; 'secondaryPreferred' reads from secondaries but falls back to primary when needed",
+      "They are aliases"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 62,
+    "question": "Which command or method would you use to atomically update a document and return the updated version to the client?",
+    "options": [
+      "updateMany",
+      "findOneAndUpdate / findAndModify",
+      "replaceOne",
+      "aggregate with $merge"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 63,
+    "question": "What is the behavior of an upsert operation in MongoDB?",
+    "options": [
+      "It always inserts a new document and never updates",
+      "It always updates the first matching document and never inserts",
+      "If no document matches the filter, it inserts a new document constructed from the filter and update document",
+      "It deletes and reinserts all matched documents"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 64,
+    "question": "Which operator is used to ensure a value is added to an array only if it is not already present?",
+    "options": ["$push", "$addToSet", "$pull", "$pop"],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 65,
+    "question": "Which MongoDB operator and feature enable targeted updates to array elements matching a given condition?",
+    "options": [
+      "$inc with upsert",
+      "The positional operator ($) and arrayFilters to update only matching array elements",
+      "$unset on array",
+      "$pop with multi: true"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 66,
+    "question": "How does MongoDB handle durability by default when journaling is enabled?",
+    "options": [
+      "It never writes to disk",
+      "It acknowledges writes only after flushing full data files",
+      "It writes operations to an on-disk journal so they can be recovered after a crash, honoring writeConcern and j options",
+      "It stores everything only in memory"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 67,
+    "question": "What is a good pagination strategy for large collections to avoid using large skip values?",
+    "options": [
+      "Using skip and limit with very large skip values",
+      "Using range-based pagination with a stable sorted field like _id or createdAt and a last-seen value",
+      "Always using $sample",
+      "Fetching the whole dataset then paginating in memory"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 68,
+    "question": "Which sharding strategy can be used to keep region-specific data in specific shards (e.g., EU vs US data)?",
+    "options": [
+      "Hash-based sharding only",
+      "Tag-aware sharding and zones assigned to specific shards based on shard key ranges",
+      "Random distribution without tags",
+      "Sharding on _id without any zones"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 69,
+    "question": "Which kinds of queries do hashed indexes NOT support efficiently?",
+    "options": [
+      "Equality queries",
+      "Exact-match shard key lookups",
+      "Range queries such as greater-than or less-than operations",
+      "Equality joins across collections"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 70,
+    "question": "What is the recommended application connection pattern to MongoDB from a backend service?",
+    "options": [
+      "Open and close a new connection for every request",
+      "Maintain a shared, long-lived MongoClient connection with internal pooling reused across requests",
+      "Use only the shell",
+      "Use OS-level sockets only"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 71,
+    "question": "Which connection string option controls the maximum number of connections in the driver's connection pool?",
+    "options": [
+      "socketTimeoutMS",
+      "maxPoolSize",
+      "connectTimeoutMS",
+      "wtimeoutMS"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 72,
+    "question": "What is the purpose of the MongoDB serverStatus command?",
+    "options": [
+      "To drop a database",
+      "To show detailed information on the instance’s state, including locks, connections, and operation counters",
+      "To validate indexes",
+      "To enable transactions"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 73,
+    "question": "What is the main difference between find and aggregate for querying data?",
+    "options": [
+      "find is always faster",
+      "aggregate provides a full pipeline with transformation stages and operators beyond simple filtering and projection",
+      "aggregate cannot use indexes",
+      "find cannot return more than 100 documents"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 74,
+    "question": "Which MongoDB feature allows continuous querying of new documents appended to a capped collection, similar to tailing a log?",
+    "options": ["Change streams", "Tailable cursors", "TTL indexes", "Views"],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 75,
+    "question": "Which kind of workload is generally a poor fit for MongoDB without careful design or additional tooling?",
+    "options": [
+      "Document-centric workloads with flexible schemas and few joins",
+      "Highly relational workloads requiring many complex multi-table joins and cross-collection, cross-database ACID transactions",
+      "Event logging workloads",
+      "Semi-structured JSON APIs"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 76,
+    "question": "How does MongoDB ensure that secondaries can catch up after being offline for some time?",
+    "options": [
+      "They copy full data files every time",
+      "They read the oplog (operations log) from the primary or another secondary and apply missing operations",
+      "They re-run all client queries",
+      "They only resync indexes"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 77,
+    "question": "What happens if a secondary falls too far behind and its required oplog entries have already been truncated?",
+    "options": [
+      "It automatically becomes primary",
+      "It stops replicating permanently",
+      "It requires a full initial sync from another member to resynchronize",
+      "It automatically downloads data from clients"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 78,
+    "question": "What kind of operations are logged in the MongoDB oplog?",
+    "options": [
+      "Only read queries",
+      "Only index builds",
+      "All replication-relevant write operations like inserts, updates, and deletes",
+      "Only delete operations"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 79,
+    "question": "Which MongoDB feature makes it easier to decouple writes from downstream processing like sending emails or indexing in a search engine?",
+    "options": [
+      "Views",
+      "Change streams feeding background workers or external queues",
+      "TTL indexes",
+      "Capped collections only"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 80,
+    "question": "What is the advantage of using majority write concern combined with majority read concern for critical data?",
+    "options": [
+      "No need for journaling",
+      "It guarantees that acknowledged writes and subsequent reads both reflect data that is durable and agreed on by a majority of voting nodes",
+      "It forces all reads to secondaries",
+      "It speeds up all operations"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 81,
+    "question": "Which query pattern is most likely to lead to a single-shard hotspot in a sharded cluster?",
+    "options": [
+      "Randomly distributed shard key writes",
+      "Writes using a monotonically increasing shard key such as a timestamp without additional distribution",
+      "Balanced range shard key writes",
+      "Reads with primaryPreferred"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 82,
+    "question": "What is the primary reason to avoid storing frequently updated counters in a single document in MongoDB?",
+    "options": [
+      "MongoDB cannot increment values",
+      "The document size limit is too small",
+      "High contention on a single document can cause write bottlenecks and reduce throughput",
+      "Indexes are disabled for counters"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 83,
+    "question": "Which technique can you use to distribute a high-volume counter across multiple documents to reduce contention?",
+    "options": [
+      "Use $addToSet",
+      "Use sharded counters where each document or shard tracks part of the count, then aggregate",
+      "Use only primaryPreferred reads",
+      "Use GridFS"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 84,
+    "question": "What is the effect of setting writeConcern { w: 0 } in a write operation?",
+    "options": [
+      "The client waits for full replication",
+      "The client does not wait for any acknowledgment from the server, providing fire-and-forget semantics",
+      "The write is guaranteed durable",
+      "The operation is turned into a read"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 85,
+    "question": "Which MongoDB feature would you use to enforce that certain fields must be unique within a collection?",
+    "options": [
+      "Text index",
+      "Hashed index",
+      "Unique index on those fields",
+      "Wildcard index"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 86,
+    "question": "Which scenario best illustrates the appropriate use of MongoDB time-series collections with compressed storage?",
+    "options": [
+      "User profiles with sparse updates",
+      "Chat messages with file attachments",
+      "High-resolution metrics (e.g., CPU usage) from thousands of devices over time",
+      "Static configuration documents"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 87,
+    "question": "What is the purpose of a $cond expression in the aggregation pipeline?",
+    "options": [
+      "To create an index",
+      "To run pipelines in parallel",
+      "To perform conditional logic similar to an if/else expression within the pipeline",
+      "To control write concern"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 88,
+    "question": "When using MongoDB Atlas, what is the primary benefit of using auto-scaling clusters?",
+    "options": [
+      "They disable backups",
+      "They automatically adjust cluster tier or storage based on load and utilization thresholds",
+      "They enforce single-node deployments",
+      "They remove the need for indexes"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 89,
+    "question": "Which MongoDB feature can you use to expose Prometheus-friendly metrics from your deployment?",
+    "options": [
+      "Profiler",
+      "serverStatus only",
+      "Exporters or built-in Atlas metrics endpoint in managed environments",
+      "Change streams"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 90,
+    "question": "Which tool is appropriate to migrate existing data from a relational database to MongoDB while transforming schemas?",
+    "options": [
+      "mongod",
+      "Backup agents only",
+      "Custom ETL pipelines using drivers or tools like mongomirror and external ETL frameworks",
+      "mongoexport alone"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 91,
+    "question": "What is the main advantage of using MongoDB’s JSON Schema validation versus doing validation only in the application?",
+    "options": [
+      "It removes the need for indexes",
+      "It guarantees that all clients, including ad-hoc tools, must respect the same server-side validation rules",
+      "It disables sharding",
+      "It automatically migrates old documents"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 92,
+    "question": "Which combination of features would you most likely use to implement a robust audit log of data changes in MongoDB?",
+    "options": [
+      "TTL indexes only",
+      "Views and capped collections",
+      "Change streams feeding an audit collection or external log store, plus appropriate retention policies",
+      "Sharding alone"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 93,
+    "question": "Which feature of MongoDB Atlas can automatically detect and suggest index improvements based on query patterns?",
+    "options": [
+      "Atlas Data Explorer views",
+      "Atlas Performance Advisor",
+      "Atlas Network Peering",
+      "Atlas Triggers"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 94,
+    "question": "What is the primary reason to prefer schema designs that align with your application’s query patterns (query-driven design) in MongoDB?",
+    "options": [
+      "To maximize normalization",
+      "To minimize document count",
+      "To reduce the number of operations needed per request and leverage indexes efficiently, improving performance",
+      "To avoid sharding"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 95,
+    "question": "Which command enables you to run server-side JavaScript in MongoDB and why is it generally discouraged for critical paths?",
+    "options": [
+      "eval; it can block the server, complicate scaling, and is disabled or deprecated in many environments due to security and performance concerns",
+      "serverStatus; it updates stats",
+      "profile; it runs JS functions",
+      "explain; it executes scripts"
+    ],
+    "correct": 0,
+    "duration": 50
+  },
+  {
+    "id": 96,
+    "question": "What is a good strategy to limit the impact of heavy analytical aggregation queries on an OLTP MongoDB cluster?",
+    "options": [
+      "Run all queries on the primary with readConcern 'local'",
+      "Disable indexes",
+      "Run analytics against secondaries or dedicated analytics nodes with readPreference=secondary, or replicate data to a separate analytics cluster",
+      "Use only mapReduce"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 97,
+    "question": "Which scenario demonstrates when MongoDB multi-document transactions are truly necessary instead of single-document atomic operations?",
+    "options": [
+      "Updating a single user profile document",
+      "Atomic updates to multiple related documents across collections that must remain consistent (e.g., transferring funds between two accounts)",
+      "Running a find query with limit",
+      "Updating an index"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 98,
+    "question": "Which combination of features would you use to safely implement event-driven microservices with MongoDB as the source of truth?",
+    "options": [
+      "Standalone mongod and cron jobs",
+      "Sharding with no replication",
+      "Replica sets, change streams, idempotent consumers, and appropriate write/read concerns",
+      "Text indexes only"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 99,
+    "question": "Which patterns and features together help you design globally distributed, compliant applications using MongoDB?",
+    "options": [
+      "Single data center, no replication",
+      "Time-series collections only",
+      "Global clusters/zones, shard key with region, appropriate read/write concerns, encryption at rest and in transit, and field-level encryption for sensitive data",
+      "Only TTL indexes"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 100,
+    "question": "Which overall preparation strategy best equips you for complex, modern MongoDB interview questions?",
+    "options": [
+      "Memorizing only basic CRUD shell commands",
+      "Understanding replication, sharding, transactions, aggregation, indexing, schema design, performance tuning, security, Atlas features, and driver best practices",
+      "Relying exclusively on GUI tools",
+      "Ignoring cluster topology details"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 101,
+    "question": "In MongoDB, what is the main difference between logical sessions and driver connection pooling?",
+    "options": [
+      "Sessions manage TCP connections while pools manage transactions",
+      "Sessions group operations for causally consistent reads and transactions, while pools manage physical connections to the server",
+      "Connection pools are only available in sharded clusters while sessions are replica-set only",
+      "Sessions automatically create indexes while pools manage backups"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 102,
+    "question": "What is causal consistency in MongoDB and when is it useful?",
+    "options": [
+      "A guarantee that all reads are eventually consistent across nodes",
+      "A guarantee that each query is faster than the previous one",
+      "A consistency model where reads respect the order of related writes (within a session), important for user-facing workflows that must not see state go backwards",
+      "A model where only primaries can be read from"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 103,
+    "question": "How does read concern \"linearizable\" differ from \"majority\" in MongoDB?",
+    "options": [
+      "They are identical in all deployments",
+      "\"linearizable\" ensures reads reflect the latest acknowledged write with strict real-time ordering guarantees; \"majority\" only guarantees the read data is majority committed",
+      "\"majority\" is strictly stronger than \"linearizable\"",
+      "\"linearizable\" is supported only on secondaries"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 104,
+    "question": "What is the main goal of maxTimeMS on MongoDB operations?",
+    "options": [
+      "To limit the number of documents returned",
+      "To cap the number of connections created",
+      "To abort an operation on the server if it runs longer than the specified time, preventing runaway queries",
+      "To limit the size of the result documents"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 105,
+    "question": "Which scenario justifies using a majority read concern even for non-transactional reads?",
+    "options": [
+      "When you want to allow stale data for analytics",
+      "When you need stronger guarantees that reads see only data that is durable and replicated to a majority, such as for financial balances",
+      "When you want to disable replication",
+      "When you are reading from arbiters"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 106,
+    "question": "Which operational risk is increased by using very small oplog sizes in a replica set?",
+    "options": [
+      "Queries automatically fail",
+      "Secondaries frequently fall too far behind and must perform expensive initial syncs instead of catching up from the oplog",
+      "The primary cannot accept writes",
+      "Indexes cannot be created"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 107,
+    "question": "Which restore strategy is safest for a large, highly available MongoDB cluster that must maintain minimal downtime?",
+    "options": [
+      "Stopping all nodes and copying data files manually",
+      "Restoring one node from backup and letting replication catch up from the primary/oplog",
+      "Running mongoimport on all nodes simultaneously",
+      "Dropping all collections and recreating them from JSON"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 108,
+    "question": "What is a rollback in MongoDB replication?",
+    "options": [
+      "A backup process that archives the oplog",
+      "An operation that rewrites the oplog with new entries",
+      "A process where a former primary that has diverged from the new primary reverts conflicting writes not present on the new primary",
+      "A transaction abort inside a single node"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 109,
+    "question": "Which situation most commonly triggers a rollback on a former MongoDB primary?",
+    "options": [
+      "Creating a new index",
+      "Journaling disabled",
+      "Two primaries accepting writes during a network partition and then one rejoining",
+      "Secondary node restarted cleanly"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 110,
+    "question": "What is the major advantage of the \"hidden\" replica set member type?",
+    "options": [
+      "It can accept all writes",
+      "It never applies the oplog",
+      "It can be used for internal analytics or backups without being targeted by client read preferences by default",
+      "It becomes primary immediately during an election"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 111,
+    "question": "Why might you configure a delayed secondary in a MongoDB replica set?",
+    "options": [
+      "To speed up writes on the primary",
+      "To maintain a time-delayed copy of the data for recovery from logical errors (e.g., accidental deletes)",
+      "To reduce oplog size",
+      "To act as an arbiter"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 112,
+    "question": "Which best describes the difference between the MongoDB profiler and the serverStatus command?",
+    "options": [
+      "Profiler tracks individual operations; serverStatus reports overall server metrics and counters",
+      "Profiler reports only CPU, serverStatus reports slow queries",
+      "They are identical views",
+      "Profiler only runs in sharded clusters, serverStatus only in standalones"
+    ],
+    "correct": 0,
+    "duration": 40
+  },
+  {
+    "id": 113,
+    "question": "What is the main purpose of the system.profile collection?",
+    "options": [
+      "To store user-defined logs",
+      "To store documents that describe operations captured by the database profiler",
+      "To hold index metadata",
+      "To replicate sharding configuration"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 114,
+    "question": "Which of the following statements about MongoDB’s WiredTiger storage engine cache is correct?",
+    "options": [
+      "It is fixed at 50% of system RAM and cannot be changed",
+      "It is used only for indexes, not documents",
+      "Its size is configurable and is critical for performance because it controls how much working set can stay in memory",
+      "It is not relevant for sharded clusters"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 115,
+    "question": "Which factor can most directly cause page faults and I/O thrashing in a WiredTiger-based MongoDB deployment?",
+    "options": [
+      "Too many users",
+      "A working set (active data + indexes) significantly larger than available RAM",
+      "Too few indexes",
+      "Using text indexes"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 116,
+    "question": "What is the role of checkpoints in the WiredTiger storage engine?",
+    "options": [
+      "They compact collections",
+      "They provide crash-consistent disk snapshots so the engine does not need to replay the entire journal on restart",
+      "They manage sharding metadata",
+      "They create new replica set members"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 117,
+    "question": "Which scenario is most likely to cause collection-level lock contention in MongoDB?",
+    "options": [
+      "Many concurrent read operations",
+      "Frequent index builds or index drops on a busy collection",
+      "Running explain() on queries",
+      "Using readPreference=secondary"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 118,
+    "question": "Why can using $where with arbitrary JavaScript in queries be dangerous or problematic?",
+    "options": [
+      "It disables all indexes permanently",
+      "It runs arbitrary server-side JavaScript, which is slow, unindexed, and has serious security implications if user input is not sanitized",
+      "It cannot filter documents",
+      "It is required for all joins"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 119,
+    "question": "What is one key reason the mapReduce feature is discouraged in favor of aggregation pipelines?",
+    "options": [
+      "mapReduce does not support JavaScript",
+      "mapReduce is always faster than aggregation",
+      "Aggregation pipelines are generally more performant, easier to optimize, and safer than server-side JavaScript mapReduce jobs",
+      "Aggregation does not support grouping"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 120,
+    "question": "Which aggregation stage is often preferred over mapReduce for complex data summarization tasks?",
+    "options": ["$addFields", "$group", "$unwind", "$sample"],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 121,
+    "question": "What does the allowDiskUse option in an aggregation command enable?",
+    "options": [
+      "It allows writes to be skipped",
+      "It allows the pipeline to spill to temporary disk files if memory limits are exceeded during stages like $sort or $group",
+      "It enables journaling",
+      "It forces all pipelines to run on secondaries"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 122,
+    "question": "Which risk is associated with excessive use of allowDiskUse=true on large aggregations?",
+    "options": [
+      "Loss of write durability",
+      "Increased lock time on arbiters",
+      "High disk I/O and latency spikes due to frequent spilling to disk",
+      "Automatic index deletion"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 123,
+    "question": "How do $set and $addFields differ in the MongoDB aggregation pipeline?",
+    "options": [
+      "$set and $addFields are exact aliases in modern MongoDB versions",
+      "$set can only add fields, $addFields can rename fields",
+      "$addFields requires $project first",
+      "$set cannot be used with $match"
+    ],
+    "correct": 0,
+    "duration": 35
+  },
+  {
+    "id": 124,
+    "question": "Which aggregation operator is most appropriate for projecting the number of elements in an array field?",
+    "options": ["$size", "$count", "$sum", "$length"],
+    "correct": 0,
+    "duration": 30
+  },
+  {
+    "id": 125,
+    "question": "Why is placing a $sort stage before a $match stage generally a bad idea in a large aggregation pipeline?",
+    "options": [
+      "$sort cannot run before $match",
+      "Sorting all documents first is more memory and CPU intensive; filtering first reduces the data that must be sorted",
+      "$match ignores indexes after $sort",
+      "It breaks read concern"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 126,
+    "question": "Which query pattern can benefit most from a compound index { status: 1, createdAt: -1 }?",
+    "options": [
+      "find({ status: 'ACTIVE' }).sort({ createdAt: -1 })",
+      "find({ createdAt: { $gt: ISODate() } }).sort({ status: 1 })",
+      "find({}).sort({ status: 1 }) only",
+      "find({ createdAt: -1 }) without filter"
+    ],
+    "correct": 0,
+    "duration": 40
+  },
+  {
+    "id": 127,
+    "question": "What is index intersection in MongoDB query planning?",
+    "options": [
+      "Using one index for filtering and another for sorting",
+      "Combining results from multiple single-field indexes to satisfy a query when a compound index is not available",
+      "Running two queries in parallel",
+      "Merging indexes across collections"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 128,
+    "question": "Why might relying heavily on index intersection be less optimal than designing proper compound indexes?",
+    "options": [
+      "Intersection disables replication",
+      "Intersection is deprecated",
+      "Combining indexes can require more intermediate processing and may be slower than a single compound index aligned to the query",
+      "Compound indexes cannot be created online"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 129,
+    "question": "What does the field nReturned in an explain() output represent?",
+    "options": [
+      "Number of documents in the collection",
+      "Number of documents examined from disk",
+      "Number of documents actually returned to the client by the query",
+      "Number of indexes used"
+    ],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 130,
+    "question": "How can you efficiently detect queries that are not using indexes in a busy production cluster?",
+    "options": [
+      "Disable all indexes",
+      "Enable profiling for all queries permanently",
+      "Use the profiler with a threshold and inspect slow operations, or analyze performance dashboards and explain plans to find COLLSCAN operations",
+      "Only watch serverStatus"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 131,
+    "question": "What is the main difference between mongoexport/mongoimport and mongodump/mongorestore?",
+    "options": [
+      "They both operate only on indexes",
+      "mongoexport/import work at the JSON/CSV document level, while mongodump/restore work with BSON and preserve more metadata like indexes and types",
+      "mongodump uses CSV while mongoexport uses BSON",
+      "mongoimport creates users"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 132,
+    "question": "Which backup approach is most appropriate for very large, sharded MongoDB clusters that need consistent backups?",
+    "options": [
+      "Running mongodump from each individual shard with --oplog on a quiesced system",
+      "File system snapshots coordinated across all shard replica sets and config servers, optionally with cloud backup tooling",
+      "Using mongoexport on each node",
+      "Copying dbpath from secondaries while writes continue"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 133,
+    "question": "In time-series collections, what is the role of the metaField?",
+    "options": [
+      "It holds time values for measurements",
+      "It stores arbitrary non-indexed metadata",
+      "It stores metadata that is shared across a set of measurements (e.g., device id), affecting how data is clustered on disk",
+      "It is used only for backups"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 134,
+    "question": "Which advantage do time-series collections provide over manually modeling time-series data in normal collections?",
+    "options": [
+      "They remove the need for indexes",
+      "They automatically compress and cluster measurements by time and metadata, reducing storage and improving query performance for time-based workloads",
+      "They disable replication",
+      "They require mapReduce"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 135,
+    "question": "What is a best practice for designing a time-series schema for IoT sensor data in MongoDB?",
+    "options": [
+      "Store each data point as a separate collection",
+      "Store all devices in a single document",
+      "Use a time-series collection with a timeField for measurement time and metaField for device identity, keeping measurements granular",
+      "Disable indexes for speed"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 136,
+    "question": "What is the main benefit of using $densify in a time-series analytics pipeline?",
+    "options": [
+      "It compresses indexes",
+      "It fills gaps in a time series by generating missing time points based on a specified step and range",
+      "It shards the data",
+      "It encrypts all measurements"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 137,
+    "question": "How does $fill complement $densify in time-series aggregations?",
+    "options": [
+      "$fill deletes empty documents",
+      "$fill creates new time documents",
+      "$fill populates missing field values (e.g., with last observation carried forward) after $densify has generated missing time points",
+      "$fill changes time zones"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 138,
+    "question": "What is the advantage of using the $setWindowFields stage in MongoDB for analytics?",
+    "options": [
+      "It disables writes during analytics",
+      "It enables windowed computations like moving averages, ranking, and cumulative sums over partitions of data",
+      "It replaces $group",
+      "It forces all results into GridFS"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 139,
+    "question": "Which scenario is an ideal fit for $setWindowFields?",
+    "options": [
+      "Calculating total document count",
+      "Pagination by _id only",
+      "Computing a rolling 7-day sum of orders per customer in a time series",
+      "Creating indexes"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 140,
+    "question": "Which MongoDB feature allows running trigger-like logic in Atlas when a change stream event occurs?",
+    "options": [
+      "Atlas Triggers, which execute functions in response to database changes",
+      "Text indexes",
+      "Capped collections",
+      "Profiler"
+    ],
+    "correct": 0,
+    "duration": 40
+  },
+  {
+    "id": 141,
+    "question": "Which benefit does MongoDB Atlas Search provide over basic text indexes?",
+    "options": [
+      "It removes the need for indexing",
+      "It disables sharding",
+      "It offers Lucene-based full-text search capabilities such as relevance scoring, fuzziness, and autocomplete tightly integrated with MongoDB",
+      "It works only with GridFS"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 142,
+    "question": "What is one key difference between a basic text index and an Atlas Search index?",
+    "options": [
+      "Text indexes use Lucene, Atlas Search does not",
+      "Atlas Search indexes are managed outside the core storage engine and accessed via $search, offering richer search operators",
+      "Text indexes support autocomplete, Atlas Search does not",
+      "Atlas Search cannot scale horizontally"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 143,
+    "question": "What is the main purpose of the $search stage in an aggregation pipeline in Atlas Search?",
+    "options": [
+      "To sample random documents",
+      "To run lucene-powered full-text queries within the pipeline",
+      "To create text indexes",
+      "To enforce schema validation"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 144,
+    "question": "How does field-level encryption impact indexing on encrypted fields in MongoDB?",
+    "options": [
+      "Encrypted fields are always indexable with any operator",
+      "Most deterministic encrypted fields can be indexed for equality, while randomized encryption cannot be indexed meaningfully",
+      "All encrypted fields are sorted alphabetically",
+      "Indexes on encrypted fields are stored in plaintext"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 145,
+    "question": "Which challenge arises when using randomized encryption on a frequently queried field?",
+    "options": [
+      "Increased replication lag",
+      "Equality queries cannot be indexed because identical plaintexts encrypt to different ciphertexts",
+      "Time-series collections are disabled",
+      "Journaling must be disabled"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 146,
+    "question": "Which scenario demonstrates a correct use of MongoDB’s $isoWeekYear, $isoWeek, and $isoDayOfWeek operators?",
+    "options": [
+      "To compute fiscal year buckets",
+      "To break dates into ISO week-based reporting buckets, such as weekly KPIs",
+      "To compress dates",
+      "To convert to BSON"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 147,
+    "question": "Why is it important to carefully design collation at the index level when building case-insensitive search features?",
+    "options": [
+      "Collation disables TTL indexes",
+      "Indexes with the correct collation allow efficient case-insensitive queries without scanning the entire collection",
+      "Collation only affects backups",
+      "Collation cannot be set on indexes"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 148,
+    "question": "Which collation option would you adjust to perform case-insensitive but accent-sensitive string comparisons?",
+    "options": [
+      "locale",
+      "caseLevel and strength, choosing a strength that ignores case but respects diacritics",
+      "numericOrdering",
+      "backwards"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 149,
+    "question": "What is a common anti-pattern when migrating from an RDBMS to MongoDB?",
+    "options": [
+      "Modeling aggregates and embedding small, related objects",
+      "Keeping a 1:1 table-to-collection mapping with many small collections and trying to re-create all joins via $lookup blindly",
+      "Using ObjectId as primary keys",
+      "Using separate databases per environment"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 150,
+    "question": "Which strategy helps when refactoring an RDBMS schema to MongoDB for a social media application?",
+    "options": [
+      "Flatten all tables into a single collection",
+      "Use query-driven design: embed posts, reactions, or profiles where access patterns justify it, and only reference for large, unbounded relationships",
+      "Use no indexes for writes",
+      "Rely solely on $lookup for every relationship"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 151,
+    "question": "Why is it risky to rely entirely on application-level uniqueness checks without unique indexes in MongoDB?",
+    "options": [
+      "The driver always enforces uniqueness itself",
+      "Write-concern majority forbids duplicates",
+      "Concurrent operations can create race conditions and duplicates, whereas unique indexes enforce constraints at the database level atomically",
+      "Unique indexes slow down reads too much"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 152,
+    "question": "Which index design supports enforcing uniqueness on a subset of documents only (e.g., active users) in MongoDB?",
+    "options": [
+      "Text index",
+      "TTL index",
+      "Partial unique index with a filter expression on active documents",
+      "Wildcard index"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 153,
+    "question": "Which array query operator matches documents where at least one element in an array satisfies the specified criteria?",
+    "options": ["$size", "$elemMatch", "$all", "$in"],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 154,
+    "question": "What does the $all operator do when used on an array field?",
+    "options": [
+      "Matches arrays with any of the specified elements",
+      "Matches arrays that contain all the specified elements, regardless of order",
+      "Sorts array elements",
+      "Replaces array elements"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 155,
+    "question": "Why can using large $in lists in queries be problematic at scale?",
+    "options": [
+      "MongoDB cannot parse $in lists",
+      "They always trigger full collection scans",
+      "Large $in lists can cause complex query planning, high memory usage, or poor index utilization, especially without appropriate indexes",
+      "They disable caching"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 156,
+    "question": "What is the primary trade-off of storing denormalized, duplicated data across documents in MongoDB?",
+    "options": [
+      "Reads become slower but writes are faster",
+      "Writes become simpler but read queries become impossible",
+      "Reads can be faster and require fewer joins, but updates must propagate changes to multiple locations",
+      "Backups are no longer supported"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 157,
+    "question": "Which scenario makes an unsharded, single replica set cluster insufficient as your data volume and throughput grow?",
+    "options": [
+      "You rarely query data",
+      "Your working set fits well in RAM",
+      "You hit disk, CPU, or max connections on a single primary and can no longer scale vertically cost-effectively",
+      "You have only one collection"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 158,
+    "question": "Which strategy helps reduce the impact of large, infrequent reporting jobs on operational traffic in MongoDB?",
+    "options": [
+      "Running reports on primary at peak hours",
+      "Dropping indexes before reports",
+      "Using dedicated reporting secondaries or a separate analytics cluster fed by change streams or backups",
+      "Disabling replication"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 159,
+    "question": "What is a good strategy for implementing soft deletes in MongoDB while preserving query performance?",
+    "options": [
+      "Physically deleting documents only",
+      "Marking documents with a deleted flag and including that flag in relevant indexes and default filters so \"active\" queries remain efficient",
+      "Moving deleted documents to a separate database with no indexes",
+      "Using capped collections"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 160,
+    "question": "How does using resumeAfter with change streams differ from startAtOperationTime?",
+    "options": [
+      "resumeAfter uses timestamps only",
+      "startAtOperationTime always resumes from the oldest oplog entry",
+      "resumeAfter uses a specific resume token from a prior event; startAtOperationTime resumes from a timestamp, potentially missing filtered events",
+      "They are identical"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 161,
+    "question": "Which field in a change stream event provides the document version after an update when fullDocument is set to updateLookup?",
+    "options": ["ns", "documentKey", "fullDocument", "clusterTime"],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 162,
+    "question": "Which operation type in change stream events is emitted when a document is removed from a collection?",
+    "options": ["insert", "update", "replace", "delete"],
+    "correct": 3,
+    "duration": 30
+  },
+  {
+    "id": 163,
+    "question": "What is the primary benefit of using logical sessions for retryable writes in MongoDB drivers?",
+    "options": [
+      "They disable journaling",
+      "They allow the server and driver to identify idempotent write attempts and safely retry them after transient network errors",
+      "They speed up all queries",
+      "They are required for all reads"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 164,
+    "question": "Which kinds of write operations in MongoDB can generally be retried safely by the driver when retryable writes are enabled?",
+    "options": [
+      "Multi-document transactions",
+      "Idempotent single-document operations like insertOne, updateOne, and deleteOne with proper identifiers",
+      "Any bulk operation with side effects",
+      "MapReduce writes"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 165,
+    "question": "Which factor must be tuned carefully to avoid connection storms when scaling a microservices architecture using MongoDB?",
+    "options": [
+      "maxPoolSize and number of client instances per service",
+      "Profiling level",
+      "WiredTiger cache size",
+      "Oplog size"
+    ],
+    "correct": 0,
+    "duration": 45
+  },
+  {
+    "id": 166,
+    "question": "What is the consequence of each container or lambda function creating its own MongoClient without pooling or reuse?",
+    "options": [
+      "Improved latency",
+      "Reduced CPU",
+      "Excessive connection counts to MongoDB, causing resource exhaustion and performance degradation",
+      "Automatic sharding"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 167,
+    "question": "Which pattern can help ensure idempotency when processing change stream events into an external system?",
+    "options": [
+      "Ignoring resume tokens",
+      "Using event IDs or resume tokens as keys in an outbox table or consumer state to skip already-processed events on restart",
+      "Relying on readConcern local",
+      "Using only text indexes"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 168,
+    "question": "Which MongoDB feature supports building multi-tenant SaaS applications where each tenant’s data is isolated but shares infrastructure?",
+    "options": [
+      "Separate binaries per tenant",
+      "Hard-coded prefixes only",
+      "Using a tenantId field in the shard key and indexes, combined with schema design and query filters for per-tenant isolation",
+      "Running one cluster per user only"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 169,
+    "question": "Which risk occurs if a multi-tenant application forgets to include tenantId in critical queries?",
+    "options": [
+      "Index usage stops",
+      "Data is silently sharded",
+      "Tenants may see or modify each other’s data, violating isolation and security requirements",
+      "Backups stop working"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 170,
+    "question": "Which feature combination can you use to implement GDPR-compliant data residency in MongoDB?",
+    "options": [
+      "Unique indexes and $text search",
+      "Replica sets only",
+      "Global clusters (zones), shard keys including region, and querying with region filters to keep data in specific geographic zones",
+      "Capped collections"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 171,
+    "question": "Why is the choice of shard key difficult to change later in production?",
+    "options": [
+      "It is stored only in memory",
+      "Changing it requires rewriting or resharding large volumes of data and updating routing metadata, which can be complex and resource intensive",
+      "Drivers cannot handle new keys",
+      "It removes all indexes"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 172,
+    "question": "Which operational feature introduced in modern MongoDB versions helps reshard a collection online?",
+    "options": [
+      "AutoMapReduce",
+      "ReshardCollection command, which can change shard keys while keeping the collection online",
+      "TextReshard",
+      "ProfilerReshard"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 173,
+    "question": "What is a common symptom that a shard key creates a write hotspot?",
+    "options": [
+      "All shards have equal disk usage",
+      "Balancer is disabled",
+      "One shard’s CPU, disk, and connections are consistently higher, and most writes target the same shard",
+      "Index builds never complete"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 174,
+    "question": "In a sharded cluster, what does a scatter-gather query mean?",
+    "options": [
+      "A query that uses only config servers",
+      "A query that targets exactly one shard",
+      "A query that must be broadcast to all shards because it lacks a shard key predicate, increasing latency and resource usage",
+      "A query that uses only collations"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 175,
+    "question": "Which practice reduces scatter-gather queries in a sharded MongoDB application?",
+    "options": [
+      "Avoiding indexes",
+      "Including the shard key (or its prefix) in most query filters and sorts",
+      "Using only mapReduce",
+      "Always reading from secondaries"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 176,
+    "question": "Which metric in Atlas or serverStatus best indicates replication lag issues?",
+    "options": [
+      "opcounters.insert",
+      "connections.current",
+      "replicationOptimeLag or similar secondaryDelay metrics",
+      "mem.bits"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 177,
+    "question": "What impact does high replication lag have on readPreference=secondary queries?",
+    "options": [
+      "No impact because secondaries are always up to date",
+      "Secondaries may serve significantly stale data that does not reflect recent writes from the primary",
+      "It speeds up queries",
+      "It disables journaling"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 178,
+    "question": "Which condition must be met for a read with readConcern=linearizable to succeed?",
+    "options": [
+      "The client must be talking to any node",
+      "The primary must be healthy and able to confirm no newer writes exist that the read has not observed",
+      "All secondaries must be hidden",
+      "There must be no indexes"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 179,
+    "question": "How can you ensure that multiple operations across services that react to the same event do not double-process data in an event-driven architecture with MongoDB?",
+    "options": [
+      "Use majority writeConcern only",
+      "Allow arbitrary consumer logic",
+      "Use idempotent consumer logic with unique constraints or processed-event tracking keyed by event identifiers",
+      "Disable change streams"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 180,
+    "question": "Which built-in role would you typically assign to an application needing read and write access only to a single database?",
+    "options": [
+      "readWrite on that database",
+      "root",
+      "clusterAdmin",
+      "readAnyDatabase"
+    ],
+    "correct": 0,
+    "duration": 35
+  },
+  {
+    "id": 181,
+    "question": "Which advantage does using SCRAM-based authentication (default) give over legacy MONGODB-CR?",
+    "options": [
+      "Weaker hashing",
+      "No need for users",
+      "Stronger password hashing and salted credentials resistant to replay attacks",
+      "Disabled TLS"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 182,
+    "question": "Which field in a replica set configuration determines how many votes each member contributes to elections?",
+    "options": ["priority", "hidden", "votes", "tags"],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 183,
+    "question": "Why should the total number of votes in a replica set not exceed 7 even if there are more than 7 members?",
+    "options": [
+      "Because elections are disabled otherwise",
+      "Because MongoDB enforces a hard limit of 7 voting members for stability and predictable election behavior",
+      "Because secondaries need no votes",
+      "Because arbiters occupy all votes"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 184,
+    "question": "Which configuration parameter controls a member’s eligibility to become primary in a replica set?",
+    "options": ["hidden", "priority", "buildIndexes", "chainingAllowed"],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 185,
+    "question": "What is the primary reason to set priority: 0 on a secondary node?",
+    "options": [
+      "To make it always primary",
+      "To ensure it never becomes primary, often used for analytics or backup-only nodes",
+      "To disable replication",
+      "To force all reads there"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 186,
+    "question": "Which mechanism does MongoDB use to allow secondaries to replicate from other secondaries (not just the primary)?",
+    "options": [
+      "Oplog chaining controlled by the chainingAllowed setting",
+      "TTL indexes",
+      "Profiler",
+      "Causal consistency"
+    ],
+    "correct": 0,
+    "duration": 45
+  },
+  {
+    "id": 187,
+    "question": "Why might you disable chained replication (chainingAllowed=false) in some topologies?",
+    "options": [
+      "To speed up full syncs",
+      "To reduce risk of lag propagation and ensure secondaries replicate only from the primary for more predictable timing",
+      "To enable mapReduce",
+      "To allow hidden nodes"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 188,
+    "question": "Which pattern helps model polymorphic documents (e.g., different types of events) in a single collection while preserving query efficiency?",
+    "options": [
+      "Separate collections for every small variation only",
+      "One collection with a type discriminator field and appropriate indexes on type and frequently queried fields",
+      "Storing all types as strings in a single field",
+      "Disabling indexes"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 189,
+    "question": "Which type of index can you use in MongoDB to efficiently support queries on fields whose names are not known ahead of time (highly dynamic documents)?",
+    "options": [
+      "2dsphere index",
+      "TTL index",
+      "Wildcard index on a path like \"data.$**\"",
+      "Hashed index"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 190,
+    "question": "Which trade-off comes with wildcard indexes in production systems?",
+    "options": [
+      "They are faster than all other index types in all cases",
+      "They always use less disk space",
+      "They can grow large and impact write performance because they index many fields, so they should be scoped to paths when possible",
+      "They cannot be used with queries"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 191,
+    "question": "Which scenario justifies using a sparse index instead of a normal index?",
+    "options": [
+      "All documents always have the field",
+      "You want to index only documents where the field exists, ignoring documents where it is missing or null",
+      "You need TTL behavior",
+      "You need text search"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 192,
+    "question": "What is a key difference between sparse and partial indexes?",
+    "options": [
+      "Sparse indexes can enforce any filter expression; partial indexes index only non-null",
+      "Sparse indexes index documents missing the field; partial indexes require text search",
+      "Sparse indexes index documents where the field exists; partial indexes use an arbitrary filter expression for inclusion logic",
+      "They are identical"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 193,
+    "question": "Which behaviour would you expect from an index built with { unique: true, sparse: true }?",
+    "options": [
+      "It enforces uniqueness across all documents including missing fields",
+      "It fails if any document lacks the indexed field",
+      "It enforces uniqueness only for documents that contain the indexed field, allowing multiple documents without that field",
+      "It cannot be used in queries"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 194,
+    "question": "Which query operator combination can be used to implement a case-insensitive substring search without Atlas Search, while still using an index?",
+    "options": [
+      "$text only",
+      "Simple $regex without anchors",
+      "A prefix-based search using an indexed, normalized (e.g., lowercased) field with a regex anchored at the beginning of the string",
+      "No combination can ever use indexes"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 195,
+    "question": "Which backup-related risk do filesystem-level snapshots have if not coordinated properly across replica set members?",
+    "options": [
+      "Indexes disappear",
+      "Snapshots may be inconsistent between members, making point-in-time recovery unreliable",
+      "Oplog is removed",
+      "Profiler is disabled"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 196,
+    "question": "Which scenario demonstrates using MongoDB as an event store implementing event sourcing?",
+    "options": [
+      "Storing only current state documents",
+      "Updating documents in place only",
+      "Appending immutable domain events to a collection and rebuilding aggregates by replaying events or using projections",
+      "Using capped collections only"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 197,
+    "question": "Which design is best for storing audit logs alongside primary application data?",
+    "options": [
+      "Embedding all audit entries inside primary documents regardless of volume",
+      "Using a separate collection (or database) for audit entries, possibly with change streams or application hooks, and indexing by entity and time",
+      "Overwriting documents with audit fields",
+      "Only logging in files"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 198,
+    "question": "Which pattern helps ensure high write throughput while providing durable, ordered append-only logs in MongoDB?",
+    "options": [
+      "Using a single document for all logs",
+      "Using a capped collection or time-series collection for logs, with sequential inserts and appropriate TTL",
+      "Using mapReduce on each log entry",
+      "Using only text indexes"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 199,
+    "question": "Which combination of MongoDB capabilities is most important for building globally distributed, low-latency read applications?",
+    "options": [
+      "Standalone mongod with no replication",
+      "Replica sets in a single region only",
+      "Global clusters with regionally pinned zones, readPreference tuned for nearest nodes, and shard keys modeling geographic distribution",
+      "Oplog-only deployments"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 200,
+    "question": "Which preparation focus will best position you for senior-level MongoDB interviews on real-world systems?",
+    "options": [
+      "Only learning basic CRUD operations in the shell",
+      "Memorizing a few aggregation operators",
+      "Deep understanding of replication internals, sharding design, transactions, indexing strategies, time-series, change streams, security, backup, and Atlas operations at scale",
+      "Relying entirely on GUI tools without knowing underlying concepts"
+    ],
+    "correct": 2,
+    "duration": 60
+  },
+
+  {
+    "id": 201,
+    "question": "Which statement best describes MongoDB's document model compared to rows in a relational table?",
+    "options": [
+      "Documents must strictly follow a predefined schema identical for all records",
+      "Documents are BSON-encoded, can embed nested documents and arrays, and do not require a fixed schema per collection",
+      "Documents can only hold primitive scalar values",
+      "Documents are stored as plain text JSON without type information"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 202,
+    "question": "Which BSON types are specifically designed to support MongoDB features beyond plain JSON?",
+    "options": [
+      "Only string and number",
+      "Date, ObjectId, Binary, Decimal128, and MinKey/MaxKey for internal comparisons",
+      "YAML, CSV, and XML",
+      "Only UUID and timestamp, no others"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 203,
+    "question": "Which characteristic of ObjectId makes it suitable as a default _id in MongoDB?",
+    "options": [
+      "It is always sequential per collection only",
+      "It embeds a timestamp, random values, and a counter to provide uniqueness across machines and processes",
+      "It is globally sorted by lexicographic order only",
+      "It stores the full hostname and username"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 204,
+    "question": "Which operation can atomically insert a document only if it does not already exist with the same _id?",
+    "options": [
+      "updateMany with multi: true",
+      "insertOne with a unique _id value",
+      "mapReduce with upsert",
+      "aggregate with $merge and whenMatched: \"fail\""
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 205,
+    "question": "What is the difference between deleteOne and deleteMany in MongoDB?",
+    "options": [
+      "deleteOne deletes a random document; deleteMany deletes none",
+      "deleteOne deletes the first matching document; deleteMany deletes all documents matching the filter",
+      "deleteOne deletes all documents; deleteMany deletes one",
+      "They are aliases with identical behavior"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 206,
+    "question": "Which write option allows you to combine multiple insert, update, and delete operations into a single request for efficiency?",
+    "options": [
+      "bulkWrite with ordered or unordered operations",
+      "findAndModify only",
+      "mapReduce",
+      "eval"
+    ],
+    "correct": 0,
+    "duration": 40
+  },
+  {
+    "id": 207,
+    "question": "What is the effect of using ordered: false in a bulkWrite call?",
+    "options": [
+      "Operations are applied sequentially and stop on first error",
+      "Operations may be applied in parallel and other operations continue even if some fail",
+      "Write concern is ignored",
+      "All operations run inside a single transaction automatically"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 208,
+    "question": "Which compound index would best serve queries filtering by tenantId and then by createdAt in descending order?",
+    "options": [
+      "{ createdAt: -1, tenantId: 1 }",
+      "{ tenantId: 1, createdAt: -1 }",
+      "{ tenantId: -1 } only",
+      "{ createdAt: -1 } only"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 209,
+    "question": "What is the main benefit of using a cluster-wide unique index on a sharded collection?",
+    "options": [
+      "It disables sharding",
+      "It enforces uniqueness across all shards, not just within a single shard, for the indexed key pattern including the shard key",
+      "It allows duplicate keys on each shard independently",
+      "It is required for all time-series collections"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 210,
+    "question": "Which type of query can fully leverage a geospatial 2dsphere index?",
+    "options": [
+      "Equality matches on integer fields",
+      "Queries using operators like $near, $geoWithin, or $geoIntersects on GeoJSON coordinates",
+      "Only $text queries",
+      "Only aggregation $group queries"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 211,
+    "question": "In a schema where each user has a small list of roles, why is embedding roles as an array inside the user document often preferable?",
+    "options": [
+      "Because arrays cannot be indexed",
+      "Because joins are always faster",
+      "Because the roles are tightly bound to the user and usually retrieved together, allowing atomic updates and simple queries",
+      "Because MongoDB does not support references"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 212,
+    "question": "For modeling a blog where posts and authors have a many-to-many relationship, which approach is often suitable?",
+    "options": [
+      "Embedding all authors in every post and all posts in every author",
+      "Using reference fields (e.g., authorIds in posts) and possibly a join collection for analytics, depending on access patterns",
+      "Using only one large array on a single document",
+      "Using separate databases for authors and posts with no links"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 213,
+    "question": "What is the main advantage of using a bucket pattern for time-series data modeling in regular collections?",
+    "options": [
+      "It disables journaling",
+      "It groups multiple measurements into bucket documents, reducing document count and index overhead while keeping retrieval efficient by time range",
+      "It forces a fixed schema",
+      "It avoids indexes entirely"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 214,
+    "question": "Which MongoDB feature ensures that a single document's updates are always atomic, even without transactions?",
+    "options": [
+      "Replica sets",
+      "Sharding",
+      "The document-level atomicity guarantee for single-document writes",
+      "MapReduce"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 215,
+    "question": "Why are single-document operations often preferred over multi-document transactions when designing MongoDB schemas?",
+    "options": [
+      "Because single-document operations cannot be replicated",
+      "Because transactions are deprecated",
+      "Because single-document operations are simpler, faster, and align with MongoDB's strengths in document-level atomicity",
+      "Because transactions always fail under load"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 216,
+    "question": "Which of the following guarantees is provided by MongoDB transactions across multiple documents and collections?",
+    "options": [
+      "They are always faster than single-document updates",
+      "They provide ACID semantics (atomicity, consistency, isolation, durability) within the scope of the transaction",
+      "They disable replication temporarily",
+      "They bypass indexes for consistency"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 217,
+    "question": "What is the recommended pattern to handle transient transaction aborts (e.g., write conflicts) in application code?",
+    "options": [
+      "Never retry aborted transactions",
+      "Ignore errors and continue",
+      "Catch transient transaction errors and retry the whole transaction block with a backoff policy",
+      "Disable journaling"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 218,
+    "question": "Which operation in the aggregation pipeline can be used to simulate a join that returns multiple arrays of results per input document?",
+    "options": [
+      "$lookup with pipeline syntax to join and group related documents",
+      "$unwind only",
+      "$bucketAuto",
+      "$out"
+    ],
+    "correct": 0,
+    "duration": 50
+  },
+  {
+    "id": 219,
+    "question": "What is the primary purpose of the $reduce aggregation expression?",
+    "options": [
+      "To compress strings",
+      "To iterate over an array and accumulate a single value using a custom expression",
+      "To reduce the size of indexes",
+      "To enforce unique constraints"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 220,
+    "question": "Which aggregation expression would you use to transform each element of an array and return a new array?",
+    "options": ["$size", "$filter", "$map", "$cond"],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 221,
+    "question": "Which stage allows branch-like execution in an aggregation pipeline to execute different sub-pipelines based on a condition?",
+    "options": ["$switch", "$facet", "$setWindowFields", "$lookup"],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 222,
+    "question": "What does the $filter aggregation expression do when applied to an array?",
+    "options": [
+      "Sorts array elements alphabetically",
+      "Projects a subset of array elements that match a given condition, returning a filtered array",
+      "Counts array elements",
+      "Joins arrays"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 223,
+    "question": "Which type of collection would you choose in MongoDB to efficiently store and query IoT sensor readings over time with automatic optimization?",
+    "options": [
+      "Capped collection",
+      "Time-series collection with proper timeField and metaField",
+      "View",
+      "GridFS bucket"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 224,
+    "question": "What is a key advantage of using the _id index for primary key lookups in MongoDB?",
+    "options": [
+      "It is not unique",
+      "It is always a text index",
+      "It is automatically created, unique, and optimized for very fast exact equality lookups",
+      "It cannot be used for sorting"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 225,
+    "question": "Which index option would you use to specify that an index should be created in the background (or as a non-blocking build) to minimize impact on writes?",
+    "options": [
+      "{ unique: true } only",
+      "Foreground builds only",
+      "Online/non-blocking index build options (background in older versions, or default behavior in recent releases)",
+      "TTL options"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 226,
+    "question": "Which index type is best for enforcing uniqueness of compound keys such as (email, tenantId)?",
+    "options": [
+      "Hashed index",
+      "Text index",
+      "Compound index with { email: 1, tenantId: 1, unique: true }",
+      "2dsphere index"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 227,
+    "question": "What is the impact of enabling the MongoDB profiler at level 2 (log all operations) on a busy production system?",
+    "options": [
+      "No overhead at all",
+      "It can significantly increase disk I/O and CPU usage, so it should be used briefly or with filters",
+      "It disables replication",
+      "It shrinks the oplog"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 228,
+    "question": "Which readPreference mode is typically used for low-latency reads in a multi-region deployment with MongoDB Atlas global clusters?",
+    "options": [
+      "primary only",
+      "nearest, to route reads to the closest node according to network latency",
+      "secondary only",
+      "primaryPreferred"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 229,
+    "question": "Which connection string parameter would you adjust to avoid long hangs if a MongoDB node is unreachable during initial connection?",
+    "options": [
+      "socketTimeoutMS",
+      "connectTimeoutMS",
+      "maxPoolSize",
+      "wtimeoutMS"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 230,
+    "question": "Which best describes the behavior of socketTimeoutMS in a MongoDB driver?",
+    "options": [
+      "Maximum time to wait for a new connection to establish",
+      "Maximum time the server will run a query",
+      "Maximum period of inactivity between the client and server for an existing connection before it is closed",
+      "Timeout for index builds"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 231,
+    "question": "Which MongoDB feature supports optimistic concurrency control by checking a version field in documents?",
+    "options": [
+      "Change streams only",
+      "Built-in automatic versioning on every document",
+      "Application-level pattern of storing and updating a version field or lastUpdated timestamp with $eq in the update filter",
+      "TTL indexes"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 232,
+    "question": "What is a common way to enforce optimistic locking in MongoDB updates?",
+    "options": [
+      "Always using transactions",
+      "Using the _id field only",
+      "Including the current version or lastUpdated value in the update filter, and incrementing version only if it matches",
+      "Disabling journaling"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 233,
+    "question": "Which MongoDB capability allows for querying and updating subfields of embedded documents directly?",
+    "options": [
+      "Only full-document replacement",
+      "Dot notation for paths like address.city in filters and updates",
+      "MapReduce only",
+      "Eval only"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 234,
+    "question": "Which operator would you use to remove elements from an array that match a specific condition?",
+    "options": ["$push", "$addToSet", "$pull", "$each"],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 235,
+    "question": "Which MongoDB operator allows you to update multiple fields at different positions in an array using named filters?",
+    "options": ["$set with arrayFilters", "$pop", "$pullAll", "$currentDate"],
+    "correct": 0,
+    "duration": 45
+  },
+  {
+    "id": 236,
+    "question": "Which operator combination would you use to implement a \"find-or-create\" pattern without transactions?",
+    "options": [
+      "find followed by insert without checks",
+      "updateOne with { upsert: true } and $setOnInsert for initial values",
+      "deleteMany then insert",
+      "mapReduce"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 237,
+    "question": "What is the main function of the $setOnInsert update operator?",
+    "options": [
+      "To update all matching documents",
+      "To set fields only if a new document is inserted due to an upsert, leaving them unchanged on updates",
+      "To clear arrays",
+      "To create a TTL index"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 238,
+    "question": "Which type of index would you use to support queries that combine equality on one field and range on another field efficiently?",
+    "options": [
+      "Text index",
+      "Compound index where equality field comes first and range field second",
+      "2dsphere index",
+      "Wildcard index"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 239,
+    "question": "Why is index prefix ordering important in compound index design?",
+    "options": [
+      "Because only the last field is usable",
+      "Because queries can use any suffix of the compound keys",
+      "Because queries can use the leading prefix fields efficiently for filter and sort, but not arbitrary permutations",
+      "Because it changes replication behavior"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 240,
+    "question": "Which collection option allows you to specify a maximum number of documents and have old documents automatically removed in insertion order?",
+    "options": [
+      "Time-series collection",
+      "Capped collection with max or size limits",
+      "View",
+      "GridFS bucket"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 241,
+    "question": "Which cursor type would you use to continuously read from the end of a capped collection as new documents are inserted?",
+    "options": [
+      "Standard cursor",
+      "Exhaust cursor",
+      "Tailable cursor, optionally with awaitData",
+      "Snapshot cursor"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 242,
+    "question": "Which limitation applies to views in MongoDB?",
+    "options": [
+      "Views can be written to directly",
+      "Views cannot be indexed separately from their underlying collections",
+      "Views can exist only in sharded clusters",
+      "Views store independent copies of data"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 243,
+    "question": "Which command or feature lets you see which queries are currently running and potentially stuck on the server?",
+    "options": [
+      "db.currentOp or its Atlas UI equivalent",
+      "serverStatus only",
+      "validate",
+      "profile with level 0"
+    ],
+    "correct": 0,
+    "duration": 40
+  },
+  {
+    "id": 244,
+    "question": "Which command would you use to terminate a long-running operation once you know its opid?",
+    "options": [
+      "db.killOp(opid)",
+      "db.stopQuery(opid)",
+      "db.shutdownServer()",
+      "db.resetProfile()"
+    ],
+    "correct": 0,
+    "duration": 35
+  },
+  {
+    "id": 245,
+    "question": "Which configuration in a replica set helps you keep some secondaries dedicated to analytics traffic?",
+    "options": [
+      "Set them as arbiters",
+      "Set hidden: true and priority: 0, then connect with explicit readPreference or tags",
+      "Disable journaling",
+      "Set them as config servers"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 246,
+    "question": "Which mechanism can you use to route specific reads to particular replica set members based on region or workload?",
+    "options": [
+      "Text search",
+      "Member tags combined with readPreference modes that specify tags",
+      "Only changing writeConcern",
+      "Profiling"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 247,
+    "question": "Which scenario best illustrates using tags in a sharded cluster?",
+    "options": [
+      "Tagging documents with colors",
+      "Tagging config servers with roles",
+      "Assigning geographic tags to shards and configuring zone ranges so that data with specific shard key values live in specific regions",
+      "Tagging indexes as unique"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 248,
+    "question": "Which MongoDB cluster type is designed to support planet-scale deployments with data pinned to several geographic regions?",
+    "options": [
+      "Standalone",
+      "Basic replica set",
+      "Global cluster (multi-region sharded cluster with zones)",
+      "Config-only cluster"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 249,
+    "question": "Which authentication mechanism in MongoDB is based on username and password with SCRAM protocol?",
+    "options": [
+      "x.509 only",
+      "LDAP bind only",
+      "SCRAM-SHA-1 or SCRAM-SHA-256",
+      "Kerberos only"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 250,
+    "question": "Which benefit does x.509 certificate-based authentication provide in MongoDB?",
+    "options": [
+      "No need for TLS",
+      "Ability to authenticate clients and cluster members using mutual TLS and certificate identity attributes",
+      "Faster queries",
+      "Automatic backup"
+    ],
+    "correct": 1,
+    "duration": 50
+  },
+  {
+    "id": 251,
+    "question": "Which role provides the highest administrative privileges across all databases and cluster configuration?",
+    "options": ["readWriteAnyDatabase", "clusterMonitor", "root", "dbOwner"],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 252,
+    "question": "Which principle should guide role and user assignment in MongoDB security configuration?",
+    "options": [
+      "Grant all users root for simplicity",
+      "Use least privilege, granting only necessary roles to each user or application",
+      "Never create custom roles",
+      "Disable authentication in development"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 253,
+    "question": "Which best describes MongoDB Atlas as a product?",
+    "options": [
+      "A local GUI client",
+      "A filesystem utility",
+      "A fully managed database-as-a-service for MongoDB deployments on major cloud providers with features like backups, scaling, and monitoring",
+      "An IDE plugin"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 254,
+    "question": "Which Atlas feature automatically scales storage or cluster tier based on metrics you configure?",
+    "options": [
+      "Atlas Triggers",
+      "Atlas Data Lake",
+      "Atlas auto-scaling policies",
+      "Atlas Charts"
+    ],
+    "correct": 2,
+    "duration": 40
+  },
+  {
+    "id": 255,
+    "question": "Which Atlas tool helps visualize operational metrics like CPU, memory, and query performance over time?",
+    "options": [
+      "Atlas Charts",
+      "Atlas Metrics and Performance Advisor dashboards",
+      "Atlas Triggers",
+      "Atlas Backup"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 256,
+    "question": "What is the purpose of Atlas Performance Advisor?",
+    "options": [
+      "To disable indexes",
+      "To recommend new indexes and query changes based on observed slow queries and workload patterns",
+      "To schedule backups only",
+      "To run mapReduce jobs"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 257,
+    "question": "Which MongoDB command can help you validate the internal consistency and structure of a collection and its indexes?",
+    "options": [
+      "db.collection.validate()",
+      "db.collection.repair()",
+      "db.collection.stats()",
+      "db.currentOp()"
+    ],
+    "correct": 0,
+    "duration": 40
+  },
+  {
+    "id": 258,
+    "question": "Which operation provides statistics such as document count, storage size, and index sizes for a collection?",
+    "options": [
+      "db.collection.validate()",
+      "db.collection.stats()",
+      "db.collection.reIndex()",
+      "db.collection.drop()"
+    ],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 259,
+    "question": "Which problem can reIndex help address in some circumstances?",
+    "options": [
+      "Incorrect shard key",
+      "Rebuilding potentially corrupted or inefficient indexes, possibly reclaiming disk space or improving performance",
+      "Fixing application bugs",
+      "Regenerating documents"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 260,
+    "question": "Which metric would you monitor to detect whether index growth is outpacing available storage?",
+    "options": [
+      "Number of users",
+      "IndexSize and total disk usage trends for the database",
+      "WriteConcern",
+      "Profiler level"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 261,
+    "question": "Which query method in the MongoDB shell enables you to limit the fields returned to only those required by the application?",
+    "options": [
+      "findOneAndUpdate only",
+      "find with a projection document specifying included/excluded fields",
+      "insertMany",
+      "aggregate with $group only"
+    ],
+    "correct": 1,
+    "duration": 40
+  },
+  {
+    "id": 262,
+    "question": "Why is it beneficial to project only necessary fields in MongoDB queries?",
+    "options": [
+      "It slows queries for safety",
+      "It increases document size",
+      "It reduces network transfer, memory usage, and sometimes allows covered queries using indexes only",
+      "It disables indexes"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 263,
+    "question": "Which MongoDB feature allows you to query collections from an S3 data lake in Atlas as if they were regular collections?",
+    "options": [
+      "Atlas Data Lake / Atlas Data Federation",
+      "Atlas Triggers",
+      "GridFS",
+      "Time-series collections"
+    ],
+    "correct": 0,
+    "duration": 45
+  },
+  {
+    "id": 264,
+    "question": "Which use case is best served by MongoDB's Data Federation capabilities?",
+    "options": [
+      "Replacing replica sets",
+      "Querying and combining data from Atlas clusters and cloud storage like S3 for analytics without loading everything into a single database",
+      "Creating indexes on local files",
+      "Configuring shard keys"
+    ],
+    "correct": 1,
+    "duration": 55
+  },
+  {
+    "id": 265,
+    "question": "Which is a good pattern for storing application configuration in MongoDB?",
+    "options": [
+      "One document per setting scattered in arbitrary collections",
+      "A dedicated collection with well-defined documents keyed by environment and component, indexed for fast lookups",
+      "Storing config as binary blobs only",
+      "Using GridFS always"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 266,
+    "question": "Which MongoDB query operator performs logical OR across multiple conditions?",
+    "options": ["$and", "$or", "$nor", "$not"],
+    "correct": 1,
+    "duration": 30
+  },
+  {
+    "id": 267,
+    "question": "Which operator in MongoDB negates the effect of another operator within a query condition?",
+    "options": ["$not", "$nor", "$or", "$and"],
+    "correct": 0,
+    "duration": 30
+  },
+  {
+    "id": 268,
+    "question": "Which query pattern benefits most from an index with collation set to strength: 2 (case-insensitive, diacritic-insensitive)?",
+    "options": [
+      "Numeric range queries",
+      "Binary data queries",
+      "Case-insensitive search on user names where accents and case differences should be ignored",
+      "Geospatial queries"
+    ],
+    "correct": 2,
+    "duration": 50
+  },
+  {
+    "id": 269,
+    "question": "Which expression would you use in an aggregation to concatenate multiple string fields with a separator?",
+    "options": ["$sum", "$concat", "$substr", "$split"],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 270,
+    "question": "Which aggregation expression converts a string field to lowercase for case-insensitive grouping?",
+    "options": ["$toLower", "$substr", "$trim", "$ltrim"],
+    "correct": 0,
+    "duration": 35
+  },
+  {
+    "id": 271,
+    "question": "Which operator is used to test for existence of a field in a MongoDB document?",
+    "options": ["$exists", "$type", "$size", "$where"],
+    "correct": 0,
+    "duration": 30
+  },
+  {
+    "id": 272,
+    "question": "Which operator lets you query documents based on the BSON type of a field (for example, string vs. number)?",
+    "options": ["$exists", "$gte", "$type", "$regex"],
+    "correct": 2,
+    "duration": 35
+  },
+  {
+    "id": 273,
+    "question": "Which behavior do you get by setting validationLevel to 'moderate' on schema validation?",
+    "options": [
+      "Validation is disabled",
+      "All existing and new documents must pass validation",
+      "Only new or updated documents are validated; existing documents are not rechecked until modified",
+      "Only deletes are validated"
+    ],
+    "correct": 2,
+    "duration": 45
+  },
+  {
+    "id": 274,
+    "question": "Which option for validationAction makes invalid writes still succeed but log warnings?",
+    "options": ["\"error\"", "\"warn\"", "\"ignore\"", "\"drop\""],
+    "correct": 1,
+    "duration": 35
+  },
+  {
+    "id": 275,
+    "question": "Which feature allows you to schedule functions to run on a time-based schedule within Atlas, similar to cron jobs?",
+    "options": [
+      "Atlas Data Lake",
+      "Atlas Triggers with scheduled triggers",
+      "Change streams only",
+      "TTL indexes"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 276,
+    "question": "Which Atlas capability lets you visually build aggregation pipelines and see sample results?",
+    "options": [
+      "Atlas Data Lake",
+      "Atlas Aggregation Pipeline Builder in Atlas UI or Compass",
+      "Atlas Charts only",
+      "Atlas Backup"
+    ],
+    "correct": 1,
+    "duration": 45
+  },
+  {
+    "id": 277,
+    "question": "Which approach helps reduce the risk of accidental full-collection writes or deletes in production?",
+    "options": [
+      "Running all commands from the shell as admin",
+      "Disabling authentication",
+      "Using stricter schema validation, careful filters, and application-level safeguards (for example, requiring confirmation for unbounded operations)",
+      "Dropping collections frequently"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 278,
+    "question": "Which combination of tools would you use to perform online schema evolution in a zero-downtime MongoDB deployment?",
+    "options": [
+      "Drop collections then recreate",
+      "Single bulkWrite",
+      "Application code that can handle both old and new schema versions, background migration scripts, and schema validation updated progressively",
+      "Only validate()"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 279,
+    "question": "Which is a safe pattern for adding a new required field to documents without downtime?",
+    "options": [
+      "Immediately enforcing strict validation and failing old documents",
+      "Dropping the collection and reimporting",
+      "Add the field with a default in existing documents, update application to handle it, then tighten validation rules",
+      "Editing system collections manually"
+    ],
+    "correct": 2,
+    "duration": 55
+  },
+  {
+    "id": 280,
+    "question": "Which combination of MongoDB concepts would you emphasize when explaining MongoDB's strengths in an interview?",
+    "options": [
+      "Rigid schemas and mandatory joins",
+      "Document model, flexible schema, powerful aggregation, horizontal scaling via sharding, replica set high availability, rich indexing, transactions, and strong tooling like Atlas",
+      "Lack of indexing and transactions",
+      "Exclusive use of mapReduce"
+    ],
+    "correct": 1,
+    "duration": 60
+  }
+]
