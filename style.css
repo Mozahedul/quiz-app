@@ -38,15 +38,20 @@ body {
   margin-bottom: 20px;
 }
 
-#next-btn {
-  padding: 10px 20px;
+#next-btn,
+#prev-btn {
+  padding: 8px 16px;
   border: none;
   background-color: #4b6cb7;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   transition: all 0.4s ease-in-out;
+}
+
+#prev-btn {
+  background-color: #beb538;
 }
 
 #next-btn:hover {
@@ -98,7 +103,7 @@ body {
   text-align: left;
   margin-left: 36px;
   padding: 12px;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.2px;
   font-weight: 500;
 }
 
